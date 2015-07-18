@@ -52,7 +52,7 @@ function showAllUsers() {
                 document.getElementById("livesearch").innerHTML = xmlhttp.responseText;
             }
         }
-        xmlhttp.open("GET","getallusers.php",true);
+        xmlhttp.open("GET","livesearch.php",true);
         xmlhttp.send();
 }
 </script>
@@ -66,9 +66,18 @@ function showAllUsers() {
 	<link rel="stylesheet" href="css/templatemo_style.css">
 	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.form.min.js"></script>
-	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body onload="showAllUsers();">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65133317-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 	<header class="site-header container animated fadeInDown">
 		<div class="header-wrapper">
 			<div class="row">
@@ -146,6 +155,8 @@ function showAllUsers() {
 						Search for a user: <input type="text" size="30" onkeyup="showResult(this.value)">
 						<br /><br />
 						<div id="livesearch"></div>
+						<br /><br />
+						<div align="center">NX Scamming = Recieved NX but did not pay gold./Gold Scammimg = Recieved Gold but did not pay NX./Hacker = Hacked Accounts</div>
 					</form>
 				</div>
 			</div>
@@ -221,8 +232,8 @@ function showAllUsers() {
 							  </select><br /><br />
 							  <label for="screenshots">Screenshot Links (Comma Seperated): </label><br />
 							  <input type="text" name="screenshots" id="screenshots" style="color: black;"><br /><br />
-							  <div class="g-recaptcha" data-sitekey="6LePfQkTAAAAAERboJW1pf8Kq_Sv-oIw1S2KHT22"></div>
-							  <br />
+							  <label for="submittedby">Your Character name:</label><br />
+							  <input type="text" name="submittedby" id="submittedby" style="color: black;"><br /><br />
 							  <button type='button' style="color: black;" onclick="submitScammer(document.getElementById('ingamename').value, document.getElementById('alts').value, document.getElementById('scamtype').value, document.getElementById('amtlost').value, document.getElementById('server').value, document.getElementById('screenshots').value)">Submit Scammer</button>
 							  <br /><br />
 						</form>

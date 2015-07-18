@@ -19,8 +19,13 @@ th {text-align: left;}
 
 <?php
 include("config.php");
-$q = mysqli_real_escape_string($con, $_GET['q']);
-$sql="SELECT * FROM scammers WHERE ign LIKE'%".$q."%' OR alt_chrs LIKE '%".$q."%' OR violation LIKE '%".$q."%' OR amt_scmd LIKE '".$q."%' OR server LIKE '%".$q."%'";
+include("functions.php");
+$sql="SELECT * FROM scammers LIMIT 0,10";
+if (isset( $_GET['q']) || !empty( $_GET['q']))
+{
+	$q = mysqli_real_escape_string($con, $_GET['q']);
+	$sql="SELECT * FROM scammers WHERE ign LIKE'%".$q."%' OR alt_chrs LIKE '%".$q."%' OR violation LIKE '%".$q."%' OR amt_scmd LIKE '".$q."%' OR server LIKE '%".$q."%'";
+}
 $result = mysqli_query($con,$sql);
 $rescnt = mysqli_num_rows($result);
 if ($rescnt > 0)
@@ -34,6 +39,7 @@ echo "<table>
 <th>Server</th>
 <th>Scammer Status</th>
 <th>Screenshots</th>
+<th>Notes</th>
 </tr>";
 
 while($row = mysqli_fetch_array($result)) {
@@ -43,13 +49,20 @@ while($row = mysqli_fetch_array($result)) {
     echo "<td>" . $row['violation'] . "</td>";
     echo "<td>" . $row['amt_scmd'] . "</td>";
 	echo "<td>" . $row['server'] . "</td>";
-	echo "<td>" . $row['status'] . "</td>";
+	echo "<td".statusColor($row['status']).">" . $row['status'] . "</td>";
 	if (!empty($row['screenshots']))
 	{
 		echo '<td>View Screenshots</td>';
 	}
 	else {
-		echo '<td>No Screenshots Available</td>';
+		echo '<td></td>';
+	}
+	if (!empty($row['notes']))
+	{
+		echo '<td>View Notes</td>';
+	}
+	else {
+		echo '<td></td>';
 	}
     echo "</tr>";
 }

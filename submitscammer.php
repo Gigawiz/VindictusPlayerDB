@@ -1,6 +1,6 @@
 <?php
 //xmlhttp.open("GET","submitscammer.php?usr="+ign+"&alts="+alts+"&scmtyp="+scmtyp+"&scamamt="+amtlist+"&server="+server+"sslinks="+sslink,true);
-$con = mysqli_connect('localhost','piratekings','dbVjubQRWA4QXUvw','vindictusscamdb');
+include('config.php');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
@@ -28,7 +28,6 @@ if (empty($_GET['sslinks']) && !isset($_GET['sslinks']))
 {
 	die ("Did not pass sslinks Paramater!");
 }
-mysqli_select_db($con,"vindictusscamdb");
 $sql="";
 /*$result = mysqli_query($con,$sql);
 if ($result)
