@@ -55,6 +55,22 @@ function showAllUsers() {
         xmlhttp.open("GET","livesearch.php",true);
         xmlhttp.send();
 }
+function showVerifiedSellers() {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("verifiedsellersgrid").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","verifiedsellers.php",true);
+        xmlhttp.send();
+}
 </script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
@@ -67,7 +83,7 @@ function showAllUsers() {
 	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.form.min.js"></script>
 </head>
-<body onload="showAllUsers();">
+<body>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -93,18 +109,18 @@ function showAllUsers() {
 					<nav id="nav" class="main-navigation hidden-xs hidden-sm">
 						<ul class="main-menu">
 							<li><a class="show-1 active homebutton" href="#">Home</a></li>
-							<li><a class="show-3 projectbutton" href="#">Scammers</a></li>
+							<li><a class="show-3 projectbutton" href="#" onclick="showAllUsers();">Scammers</a></li>
 							<li><a class="show-5 contactbutton" href="#">Report a Scammer</a></li>
-							<li><a class="show-4 blogbutton" href="#">Buy NX or Gold</a></li>
+							<li><a class="show-4 blogbutton" href="#" onclick="showVerifiedSellers();">Verified Sellers</a></li>
 							<li><a class="show-2 aboutbutton" href="#">About Us</a></li>
 						</ul>
 					</nav>
 					<nav class="main-navigation menu-responsive hidden-md hidden-lg">
 						<ul class="main-menu">
 							<li><a class="show-1 active homebutton" href="#">Home</a></li>
-							<li><a class="show-3 projectbutton" href="#">Scammers</a></li>
+							<li><a class="show-3 projectbutton" href="#" onclick="showAllUsers();">Scammers</a></li>
 							<li><a class="show-5 contactbutton" href="#">Report a Scammer</a></li>
-							<li><a class="show-4 blogbutton" href="#">Buy NX or Gold</a></li>
+							<li><a class="show-4 blogbutton" href="#" onclick="showVerifiedSellers();">Verified Sellers</a></li>
 							<li><a class="show-2 aboutbutton" href="#">About Us</a></li>
 						</ul>
 					</nav>
@@ -165,39 +181,11 @@ function showAllUsers() {
 		<div id="menu-4" class="content blog-section container">
 			<div class="blog-header text-center">
 				<h2 class="animated fadeInRight">Buying/Selling Gold or NX with Vindictus Scam DB</h2>
-				<p class="animated fadeInLeft">Currently our representatives can trade in-game gold for NX. We currently ask 150% gold-to-nx conversion (ex: $10 nx will be 25m gold in game). You can contact the following people for transactions like this:</p>
+				<p class="animated fadeInLeft">Currently our representatives can trade in-game gold for NX. You can contact the following people for transactions like this:</p>
 			</div>
 			<div class="row blog-posts">
-				<div class="col-md-4 col-sm-12">
-					<div class="blog-item post-1 animated zoomIn">
-						<div class="blog-bg blog-pink"></div>
-						<div class="blog-content">
-							<h3>Dubbs</h3>
-							<span class="solid-line"></span>
-							<p>Dubbs is our Resident NX Provider. He will trade items or gold for NX cards (up to $ per week). You can contact him via:</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-12">
-					<div class="blog-item post-2 animated zoomIn">
-						<div class="blog-bg blog-blue"></div>
-						<div class="blog-content">
-							<h3>Gigawiz</h3>
-							<span class="solid-line"></span>
-							<p>Gigawiz is our Resident NX Buyer/Seller. He will trade items or gold for NX (and vice versa). You can contact him via: <br />Vindictus: Gigawiz <br /> Or <a href="http://www.vindictusforums.com/conversations/add?to=HarmfulMonk">Send him a message on the forums</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-12">
-					<div class="blog-item post-3 animated zoomIn">
-						<div class="blog-bg blog-green"></div>
-						<div class="blog-content">
-							<h3>Third Seller Here</h3>
-							<span class="solid-line"></span>
-							<p>Etiam aliquam sem vel velit tempus, quis porttitor nunc rutrum. Ut a tempus arcu. Sed velit felis, pretium a lacus in, cursus scelerisque ex.</p>
-						</div>
-					</div>
-				</div>
+				<div id="verifiedsellersgrid"></div>
+						<br /><br />
 			</div>
 		</div>
 
