@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
-function submitScammer(ign, alts, scmtyp, amtlst, server, sslink)
+function submitScammer(ign, alts, scmtyp, amtlst, server, sslink, charnm, notes, skype)
 {
 	if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -16,8 +16,8 @@ function submitScammer(ign, alts, scmtyp, amtlst, server, sslink)
             document.getElementById("reportstatus").innerHTML = xmlhttp.responseText;
         }
     }
-    xmlhttp.open("GET","submitscammer.php?usr="+ign+"&alts="+alts+"&scmtyp="+scmtyp+"&scamamt="+amtlst+"&server="+server+"sslinks="+sslink,true);
-    xmlhttp.send();
+    xmlhttp.open("GET","submitscammer.php?usr="+ign+"&alts="+alts+"&scmtyp="+scmtyp+"&scamamt="+amtlst+"&server="+server+"&sslinks="+sslink+"&charnm="+charnm+"&notes="+notes+"&skype="+skype,true);
+    xmlhttp.send(); 
 }
 function showResult(str) {
   if (str.length==0) { 
@@ -199,7 +199,6 @@ function showVerifiedSellers() {
 			<div class="contact-holder">
 				<div class="row animated fadeInLeft" align="center">
 						<form>
-							<div id="reportstatus"></div>
 							<br />
 							  <label for="ingamename">Character Name: </label><br />
 							  <input type="text" name="ign" id="ingamename" style="color: black;"><br /><br />
@@ -209,8 +208,9 @@ function showVerifiedSellers() {
 							  <select id="scamtype" name="scamtype" style="color: black;">
 								  <option value="nx">NX</option>
 								  <option value="gold">Gold</option>
+								  <option value="gold">Items</option>
 							  </select><br /><br />
-							  <label for="amtlst">Amount Lost: </label><br />
+							  <label for="amtlst">Amount Lost (ex: 20k NX - 20m Gold): </label><br />
 							  <input type="text" name="lost" id="amtlost" style="color: black;"><br /><br />
 							  <label for="server">What server are they on: </label><br />
 							  <select id="server" name="server" style="color: black;">
@@ -220,11 +220,17 @@ function showVerifiedSellers() {
 								  <option value="eu">EU</option>
 								  <option value="kor">KOR</option>
 							  </select><br /><br />
-							  <label for="screenshots">Screenshot Links (Comma Seperated): </label><br />
+							  <label for="screenshots">Screenshot Link (Only One is Allowed at the moment): </label><br />
 							  <input type="text" name="screenshots" id="screenshots" style="color: black;"><br /><br />
 							  <label for="submittedby">Your Character name:</label><br />
 							  <input type="text" name="submittedby" id="submittedby" style="color: black;"><br /><br />
-							  <button type='button' style="color: black;" onclick="submitScammer(document.getElementById('ingamename').value, document.getElementById('alts').value, document.getElementById('scamtype').value, document.getElementById('amtlost').value, document.getElementById('server').value, document.getElementById('screenshots').value)">Submit Scammer</button>
+							  <label for="notes">Notes:</label><br />
+							  <textarea rows="4" cols="50" name="notes" id="notes" style="color: black;">Enter your story of how you were scammed or any notes here.</textarea>
+							  <br /><br />
+							  <label for="skype">Scammer's Skype Nickname (if known):</label><br />
+							  <input type="text" name="skype" id="skype" style="color: black;"><br /><br />
+
+							  <a class="btn btn-default" href="#" data-featherlight="<p id='reportstatus' style='color: black;'></p>" style="color:black;" onclick="submitScammer(document.getElementById('ingamename').value, document.getElementById('alts').value, document.getElementById('scamtype').value, document.getElementById('amtlost').value, document.getElementById('server').value, document.getElementById('screenshots').value, document.getElementById('submittedby').value, document.getElementById('notes').value, document.getElementById('skype').value)">Submit Scammer</a>
 							  <br /><br />
 						</form>
 				</div>

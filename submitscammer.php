@@ -28,16 +28,43 @@ if (empty($_GET['sslinks']) && !isset($_GET['sslinks']))
 {
 	die ("Did not pass sslinks Paramater!");
 }
-$sql="";
-/*$result = mysqli_query($con,$sql);
-if ($result)
+if (empty($_GET['charnm']) && !isset($_GET['charnm']))
 {
-	echo "Successfully Reported User: - Thanks for keeping us up to date!";
+	die ("Did not pass charnm Paramater!");
 }
-else {
-	echo "Uh-oh! There was a problem with your submission! Please try again.";
-	echo 'If the problem persists, please contact us on our <a href="http://vindictusforums.com">forums</a>.';
-}*/
-echo ("Not Implemented yet!");
+if (empty($_GET['notes']) && !isset($_GET['notes']))
+{
+	die ("Did not pass notes Paramater!");
+}
+if (empty($_GET['skype']) && !isset($_GET['skype']))
+{
+	die ("Did not pass skypem Paramater!");
+}
+//start insert code
+include('config.php');
 
+// prepare and bind
+$stmt = $con->prepare("INSERT INTO `submissions`(`ign`, `amt_scmd`, `alt_chrs`, `violation`, `screenshots`, `server`, `status`, `reported_by`, `notes`, `skype`) VALUES (?,?,?,?,?,?,?,?,?,?)");
+$stmt->bind_param("ssssssssss", $ign, $amtscmd, $altchrs, $violation, $screenshots, $server, $status, $reportedby, $notes, $skype);
+
+// set parameters and execute
+$ign = $_GET['usr'];
+$amtscmd = $_GET['scamamt'];
+$altchrs = $_GET['alts'];
+$violation = $_GET['scmtyp'];
+$screenshots = $_GET['sslinks'];
+$server = strtoupper($_GET['server']);
+$status = "Under Investigation";
+$reportedby = $_GET['charnm'];
+$notes = "";
+if ($_GET['notes'] != "Enter your story of how you were scammed or any notes here.")
+{
+	$notes = $_GET['notes'];
+}
+$skype = $_GET['skype'];
+$stmt->execute();
+
+echo "Successfully Reported ".$_GET['usr'];
+$stmt->close();
+$con->close();
 ?>

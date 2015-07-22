@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 22, 2015 at 05:57 PM
+-- Generation Time: Jul 22, 2015 at 06:37 PM
 -- Server version: 5.5.42
 -- PHP Version: 5.4.39
 
@@ -27,6 +27,28 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `scammers` (
+  `id` int(11) NOT NULL,
+  `ign` text NOT NULL,
+  `amt_scmd` text NOT NULL,
+  `alt_chrs` text NOT NULL,
+  `violation` text NOT NULL,
+  `screenshots` text NOT NULL,
+  `server` text NOT NULL,
+  `status` text NOT NULL,
+  `reported_by` text NOT NULL,
+  `notes` text NOT NULL,
+  `skype` text NOT NULL,
+  `ip_address` text NOT NULL,
+  `phys_address` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `submissions`
+--
+
+CREATE TABLE IF NOT EXISTS `submissions` (
   `id` int(11) NOT NULL,
   `ign` text NOT NULL,
   `amt_scmd` text NOT NULL,
@@ -85,6 +107,12 @@ ALTER TABLE `scammers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `submissions`
+--
+ALTER TABLE `submissions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -104,6 +132,11 @@ ALTER TABLE `verified_sellers`
 -- AUTO_INCREMENT for table `scammers`
 --
 ALTER TABLE `scammers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `submissions`
+--
+ALTER TABLE `submissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
