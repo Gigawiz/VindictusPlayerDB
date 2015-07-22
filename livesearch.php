@@ -52,14 +52,14 @@ while($row = mysqli_fetch_array($result)) {
 	echo "<td".statusColor($row['status']).">" . $row['status'] . "</td>";
 	if (!empty($row['screenshots']))
 	{
-		echo '<td>View Screenshots</td>';
+		echo '<td><a class="btn btn-default" href="'.$row['screenshots'].'" data-featherlight="image">View Screenshot</a></td>';
 	}
 	else {
 		echo '<td></td>';
 	}
 	if (!empty($row['notes']))
 	{
-		echo '<td>View Notes</td>';
+		echo '<td><a class="btn btn-default" href="#" data-featherlight="<p style=\'color:black;\'>'.$row['notes'].'</p>" style="color:black;">View Notes</a></td>';
 	}
 	else {
 		echo '<td></td>';

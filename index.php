@@ -82,6 +82,8 @@ function showVerifiedSellers() {
 	<link rel="stylesheet" href="css/templatemo_style.css">
 	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.form.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="css/featherlight.min.css" title="Featherlight Styles" />
+	<link type="text/css" rel="stylesheet" href="css/featherlight.gallery.min.css" title="Featherlight Styles" />
 </head>
 <body>
 <script>
@@ -259,5 +261,28 @@ function showVerifiedSellers() {
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/templatemo_custom.js"></script>
+	<script src="js/jquery-1.7.0.min.js"></script>
+	<script src="js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="release/featherlight.gallery.min.js" type="text/javascript" charset="utf-8"></script>
+
+		<script>
+			$(document).ready(function(){
+				$('.gallery').featherlightGallery({
+					gallery: {
+						fadeIn: 300,
+						fadeOut: 300
+					},
+					openSpeed:    300,
+					closeSpeed:   300
+				});
+				$('.gallery2').featherlightGallery({
+					gallery: {
+						next: 'next »',
+						previous: '« previous'
+					},
+					variant: 'featherlight-gallery2'
+				});
+			});
+		</script>
 </body>
 </html>
