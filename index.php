@@ -137,6 +137,7 @@ function showVerifiedSellers() {
 			<div class="home-intro text-center">
 				<h2 class="welcome-title animated fadeInLeft">Welcome to Vindictus Scam DB!</h2>
 				<p class="animated fadeInRight">Vindictus Scam DB is a free service dedicated to eradicating NX & Gold Scammers from Vindictus. <br />Please note that this service is still in beta so there will be bugs or incomplete information.</p>
+				<p class="animated fadeInLeft">Feel free to check out our <a href="https://github.com/Gigawiz/VindictusScamDB" target="_blank">Github</a> page to see new changes to the script!</p>
 				<ul class="list-icons animated fadeInUp">
 					<li><i class="icon-screen-tablet"></i></li>
 					<li><i class="icon-screen-desktop"></i></li>
@@ -206,19 +207,20 @@ function showVerifiedSellers() {
 							  <input type="text" name="alts" id="alts" style="color: black;"><br /><br />
 							  <label for="scamtype">What did they scam you for: </label><br />
 							  <select id="scamtype" name="scamtype" style="color: black;">
-								  <option value="nx">NX</option>
-								  <option value="gold">Gold</option>
-								  <option value="gold">Items</option>
+								  <option value="NX Scamming">Scammed NX</option>
+								  <option value="Gold Scamming">Scammed Gold</option>
+								  <option value="Item Scamming">Scammed Items</option>
+								  <option value="Hacking">Hacked Account</option>
 							  </select><br /><br />
 							  <label for="amtlst">Amount Lost (ex: 20k NX - 20m Gold): </label><br />
 							  <input type="text" name="lost" id="amtlost" style="color: black;"><br /><br />
 							  <label for="server">What server are they on: </label><br />
 							  <select id="server" name="server" style="color: black;">
-								  <option value="useast">US-East</option>
-								  <option value="uswest">US-West</option>
-								  <option value="aus">AUS</option>
-								  <option value="eu">EU</option>
-								  <option value="kor">KOR</option>
+								  <option value="US-East">US-East</option>
+								  <option value="US-West">US-West</option>
+								  <option value="AUS">AUS</option>
+								  <option value="EU">EU</option>
+								  <option value="KOR">KOR</option>
 							  </select><br /><br />
 							  <label for="screenshots">Screenshot Link (Only One is Allowed at the moment): </label><br />
 							  <input type="text" name="screenshots" id="screenshots" style="color: black;"><br /><br />
@@ -244,9 +246,10 @@ function showVerifiedSellers() {
 			<div class="col-md-12">
 				<div class="main-footer">
 					<ul class="social">
-						<li><a href="#">Facebook</a></li>
-						<li><a href="#">Twitter</a></li>
-						<li><a href="#">Instagram</a></li>
+						<li><a href="https://www.facebook.com/VindictusSDB" target="_blank">Facebook</a></li>
+						<li><a href="https://twitter.com/VindictusScamDB" target="_blank">Twitter</a></li>
+						<li><a href="http://vindictusforums.com" target="_blank">VindictusForums</a></li>
+						<li><a href="http://webmaster1.com" target="_blank">Webmaster1 Network</a></li> 
 					</ul>
 				</div>
 			</div>
@@ -257,19 +260,12 @@ function showVerifiedSellers() {
 			</div>
 		</div>
 	</footer>
-	<!-- templatemo 421 raleway -->
-	<span class="border-top"></span>
-	<span class="border-left"></span>
-	<span class="border-right"></span>
-	<span class="border-bottom"></span>
-	<span class="shape-1"></span>
-	<span class="shape-2"></span>
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/templatemo_custom.js"></script>
 	<script src="js/jquery-1.7.0.min.js"></script>
 	<script src="js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-			<script src="release/featherlight.gallery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/featherlight.gallery.min.js" type="text/javascript" charset="utf-8"></script>
 
 		<script>
 			$(document).ready(function(){

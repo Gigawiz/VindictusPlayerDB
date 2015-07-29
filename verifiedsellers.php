@@ -51,10 +51,24 @@ while($row = mysqli_fetch_array($result)) {
 	echo "<td>" . $row['sale_types'] . "</td>";
 	echo "<td>" . $row['has_stock'] . "</td>";
 	echo "<td>" . $row['will_loan'] . "</td>";
-	echo "<td>" . $row['conversion_rate'] . "</td>";
+	if (!empty($row['conversion_rate']) && stristr($row['conversion_rate'], '<a href=') === FALSE)
+	{
+		$rate = '<p style=\'color:black;\'>Conversion Rate:'.$row['conversion_rate']."%<br />
+		(10k nx =25,000,000 Gold)<br />
+		(25k nx =50,000,000 Gold)
+		</p>";
+		echo '<td><a class="btn btn-default" href="#" data-featherlight="'.$rate.'" style="color:black;">View Rates</a></td>';
+	}
+	else if (stristr($row['conversion_rate'], '<a href=') !== FALSE)
+	{
+		echo '<td>'.$row['conversion_rate'].'</td>';
+	}
+	else {
+		echo '<td></td>';
+	}
 	if (!empty($row['notes']))
 	{
-		echo '<td>View Notes</td>';
+		echo '<td><a class="btn btn-default" href="#" data-featherlight="<p style=\'color:black;\'>'.$row['notes'].'</p>" style="color:black;">View Notes</a></td>';
 	}
 	else {
 		echo '<td></td>';
