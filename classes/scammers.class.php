@@ -35,6 +35,7 @@ class scammers {
 		}
 		$result = mysqli_query($this->db,$sql);
 		$rescnt = mysqli_num_rows($result);
+		$this->setHeader();
 		if ($rescnt > 0)
 		{
 		echo "<table>
@@ -79,6 +80,32 @@ class scammers {
 			echo '<div style="text-align:center;">Uh-Oh! We don\'t have that person in our database! Please check your search or <a href="" class="show-1 active homebutton" href="#">submit this person</a>!</div>';
 		}
 		mysqli_close($this->db);
+		$this->setFooter();
+	}
+	private function setHeader(){
+		echo '<!DOCTYPE html>
+		<html>
+		<head>
+		<style>
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		table, td, th {
+			border: 1px solid black;
+			padding: 5px;
+		}
+
+		th {text-align: left;}
+		</style>
+		</head>
+		<body>';
+	}
+	
+	private function setFooter()
+	{
+		echo '</body></html>';
 	}
 }
 ?>

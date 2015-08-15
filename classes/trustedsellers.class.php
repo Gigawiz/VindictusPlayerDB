@@ -11,6 +11,7 @@ class trustedsellers {
 	  }
 	public function getList()
 	{
+		$this->setHeader();
 		$sql="SELECT * FROM `verified_sellers` LIMIT 0,10";
 		$result = mysqli_query($this->db,$sql);
 		$rescnt = mysqli_num_rows($result);
@@ -72,6 +73,33 @@ class trustedsellers {
 			echo '<div style="text-align:center;">Uh-Oh! There seems to be an error in our script! Please check back soon!';
 		}
 		mysqli_close($this->db);
+		$this->setFooter();
+	}
+	
+	private function setHeader(){
+		echo '<!DOCTYPE html>
+		<html>
+		<head>
+		<style>
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		table, td, th {
+			border: 1px solid black;
+			padding: 5px;
+		}
+
+		th {text-align: left;}
+		</style>
+		</head>
+		<body>';
+	}
+	
+	private function setFooter()
+	{
+		echo '</body></html>';
 	}
 }
 ?>

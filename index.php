@@ -19,7 +19,7 @@ function submitScammer(ign, alts, scmtyp, amtlst, server, sslink, charnm, notes,
             document.getElementById("reportstatus").innerHTML = xmlhttp.responseText;
         }
     }
-    xmlhttp.open("GET","submitscammer.php?usr="+ign+"&alts="+alts+"&scmtyp="+scmtyp+"&scamamt="+amtlst+"&server="+server+"&sslinks="+sslink+"&charnm="+charnm+"&notes="+notes+"&skype="+skype,true);
+    xmlhttp.open("GET","api.php?q=2&usr="+ign+"&alts="+alts+"&scmtyp="+scmtyp+"&scamamt="+amtlst+"&server="+server+"&sslinks="+sslink+"&charnm="+charnm+"&notes="+notes+"&skype="+skype,true);
     xmlhttp.send(); 
 }
 function showResult(str) {
@@ -39,7 +39,7 @@ function showResult(str) {
       document.getElementById("livesearch").style.border="1px solid #A5ACB2";
     }
   }
-  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.open("GET","api.php?q=3&srch="+str,true);
   xmlhttp.send();
 }
 function showAllUsers() {
@@ -55,7 +55,7 @@ function showAllUsers() {
                 document.getElementById("livesearch").innerHTML = xmlhttp.responseText;
             }
         }
-        xmlhttp.open("GET","livesearch.php",true);
+        xmlhttp.open("GET","api.php?q=3",true);
         xmlhttp.send();
 }
 function showVerifiedSellers() {
@@ -71,7 +71,7 @@ function showVerifiedSellers() {
                 document.getElementById("verifiedsellersgrid").innerHTML = xmlhttp.responseText;
             }
         }
-        xmlhttp.open("GET","verifiedsellers.php",true);
+        xmlhttp.open("GET","api.php?q=4",true);
         xmlhttp.send();
 }
 </script>
@@ -142,9 +142,9 @@ function showVerifiedSellers() {
 				<p class="animated fadeInRight">Vindictus Scam DB is a free service dedicated to eradicating NX & Gold Scammers from Vindictus. <br />Please note that this service is still in beta so there will be bugs or incomplete information.</p>
 				<p class="animated fadeInLeft">Feel free to check out our <a href="https://github.com/Gigawiz/VindictusScamDB" target="_blank">Github</a> page to see new changes to the script!</p>
 				<ul class="list-icons animated fadeInUp">
-					<li><i class="icon-screen-tablet"></i></li>
-					<li><i class="icon-screen-desktop"></i></li>
-					<li><i class="icon-globe"></i></li>
+					<li><?php echo file_get_contents("http://vindictusscamdb.com/api.php?q=1&statType=scammers"); ?></li>
+					<li><?php echo file_get_contents("http://vindictusscamdb.com/api.php?q=1&statType=queue"); ?></li>
+					<li><?php echo file_get_contents("http://vindictusscamdb.com/api.php?q=1&statType=sellers"); ?></li>
 					<li><i class="icon-shield"></i></li>
 				</ul>
 			</div>
