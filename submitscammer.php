@@ -49,11 +49,15 @@ $stmt->bind_param("ssssssssss", $ign, $amtscmd, $altchrs, $violation, $screensho
 
 // set parameters and execute
 $ign = $_GET['usr'];
-$amtscmd = $_GET['scamamt'];
+$amtscmd = "Unknown";
+if ($_GET['scamamt'] != "")
+{
+	$amtscmd = $_GET['scamamt'];
+}
 $altchrs = $_GET['alts'];
 $violation = $_GET['scmtyp'];
 $screenshots = $_GET['sslinks'];
-$server = strtoupper($_GET['server']);
+$server = $_GET['server'];
 $status = "Under Investigation";
 $reportedby = $_GET['charnm'];
 $notes = "";

@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
 function submitScammer(ign, alts, scmtyp, amtlst, server, sslink, charnm, notes, skype)
 {
 	if (window.XMLHttpRequest) {
@@ -171,7 +174,7 @@ function showVerifiedSellers() {
 				<div class="row">
 					<!-- scammers main content-->
 					<form>
-						Search for a user: <input type="text" size="30" onkeyup="showResult(this.value)">
+						Search for a user: <input type="text" size="30" onkeyup="showResult(this.value)" data-toggle="tooltip" title="You can search by character name, scam type or server!">
 						<br /><br />
 						<div id="livesearch"></div>
 						<br /><br />
@@ -202,9 +205,9 @@ function showVerifiedSellers() {
 						<form>
 							<br />
 							  <label for="ingamename">Character Name: </label><br />
-							  <input type="text" name="ign" id="ingamename" style="color: black;"><br /><br />
+							  <input type="text" name="ign" id="ingamename" style="color: black;" data-toggle="tooltip" title="The character of the person who scammed you goes here"><br /><br />
 							  <label for="alts">Alternate Characters: </label><br />
-							  <input type="text" name="alts" id="alts" style="color: black;"><br /><br />
+							  <input type="text" name="alts" id="alts" style="color: black;" data-toggle="tooltip" title="The Scammer's Alternate Characters go here"><br /><br />
 							  <label for="scamtype">What did they scam you for: </label><br />
 							  <select id="scamtype" name="scamtype" style="color: black;">
 								  <option value="NX Scamming">Scammed NX</option>
@@ -212,8 +215,8 @@ function showVerifiedSellers() {
 								  <option value="Item Scamming">Scammed Items</option>
 								  <option value="Hacking">Hacked Account</option>
 							  </select><br /><br />
-							  <label for="amtlst">Amount Lost (ex: 20k NX - 20m Gold): </label><br />
-							  <input type="text" name="lost" id="amtlost" style="color: black;"><br /><br />
+							  <label for="amtlst">Amount Lost: </label><br />
+							  <input type="text" name="lost" id="amtlost" style="color: black;" data-toggle="tooltip" title="ex: 20k NX - 20m Gold (leave blank if unknown amount)!"><br /><br />
 							  <label for="server">What server are they on: </label><br />
 							  <select id="server" name="server" style="color: black;">
 								  <option value="US-East">US-East</option>
