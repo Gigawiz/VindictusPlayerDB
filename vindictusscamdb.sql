@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 15, 2015 at 12:00 PM
+-- Generation Time: Sep 02, 2015 at 03:05 PM
 -- Server version: 5.5.45
 -- PHP Version: 5.4.44
 
@@ -19,6 +19,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `vindictusscamdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ip2country`
+--
+
+CREATE TABLE IF NOT EXISTS `ip2country` (
+  `id` int(11) NOT NULL,
+  `min` bigint(12) NOT NULL,
+  `max` bigint(12) NOT NULL,
+  `code` varchar(2) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -40,7 +54,8 @@ CREATE TABLE IF NOT EXISTS `scammers` (
   `skype` text NOT NULL,
   `ip_address` text NOT NULL,
   `phys_address` text NOT NULL,
-  `submission_ip` text NOT NULL
+  `submission_ip` text NOT NULL,
+  `report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,7 +78,8 @@ CREATE TABLE IF NOT EXISTS `submissions` (
   `skype` text NOT NULL,
   `ip_address` text NOT NULL,
   `phys_address` text NOT NULL,
-  `submission_ip` text NOT NULL
+  `submission_ip` text NOT NULL,
+  `report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -91,6 +107,13 @@ CREATE TABLE IF NOT EXISTS `verified_sellers` (
 --
 
 --
+-- Indexes for table `ip2country`
+--
+ALTER TABLE `ip2country`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `min` (`min`);
+
+--
 -- Indexes for table `scammers`
 --
 ALTER TABLE `scammers`
@@ -112,6 +135,11 @@ ALTER TABLE `verified_sellers`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `ip2country`
+--
+ALTER TABLE `ip2country`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `scammers`
 --
