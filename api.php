@@ -35,6 +35,17 @@ switch ($_GET['q'])
 	case "4":
 		$cls_trustedsellers->getList();
 		break;
+	case "5":
+		//Warning: mysqli::query():
+		$randomPost = $cls_randomthread->getRandomPost();
+		if (strpos($randomPost,'http://vindictusforums.com//threads/.0/') !== false)
+		{
+			
+		}
+		else {
+			echo "Suggested Vindictus Forums Post: ".$randomPost;
+		}
+		break;
 	default:
 	
 		break;

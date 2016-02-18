@@ -14,6 +14,7 @@ class system {
 	private $totalScammers = "";
 	private $totalInQueue = "";
 	private $totalSellers = "";
+	private $totalTrusted = "";
 	private function setStats()
 	{
 		//setup the query to get a number of scammers in the db
@@ -34,7 +35,14 @@ class system {
 			die('There was an error running the query [' . $this->db->error . ']');
 		}
 		$this->totalSellers = $slrresult->num_rows;
-		
+		$this->totalTrusted = $this->totalTrusted + $slrresult->num_rows;
+		//Rinse & Repeat for Trusted buyers
+		$byrsql="SELECT * FROM `verified_buyers`";
+		if(!$byrresult = $this->db->query($byrsql)){
+			$this->totalSellers = "0";
+			die('There was an error running the query [' . $this->db->error . ']');
+		}
+		$this->totalTrusted = $this->totalTrusted + $byrresult->num_rows;
 		
 		//Rinse and repeat for Queued Scammers
 		$queuesql="SELECT * FROM `submissions`";
@@ -55,6 +63,9 @@ class system {
 				break;
 			case "queue":
 				return $this->totalInQueue;
+				break;
+			case "trusted":
+				return $this->totalTrusted;
 				break;
 			default:
 				return "Unknown";
