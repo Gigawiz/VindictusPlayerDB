@@ -3,11 +3,15 @@ VindictusScamDB is the first database of known scammers on the game vindictus. T
 
 The code posted here is live on our site and released so others can see some of the work put into VindictusScamDB. Feel free to submit issues or suggestions and I will attempt to fix/implement them.
 
-New in V1.7.1:
+New in V1.7.3:
 
 Replaced old scammer table logic with Datatables
 
 Added logic to support multiple comma seperated screenshot links (uses individual featherlight buttons for each screenshot link, will be replaced with gallery soon)
+
+Fixed bug in "system.class.php" that would cause "under investigation" statstics to return 0 if "submissions" table was empty
+
+Added option to disable xenforo random thread link
 
 Removed Trusted Players section (will be re-added with V2)
 
