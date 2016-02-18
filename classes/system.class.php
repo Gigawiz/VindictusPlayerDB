@@ -45,12 +45,19 @@ class system {
 		$this->totalTrusted = $this->totalTrusted + $byrresult->num_rows;
 		
 		//Rinse and repeat for Queued Scammers
-		$queuesql="SELECT * FROM `submissions`";
+		$queuesql="SELECT * FROM `scammers` WHERE `status` = \"Under Investigation\"";
 		if(!$queueresult = $this->db->query($queuesql)){
 			$this->totalInQueue = "0";
 			die('There was an error running the query [' . $this->db->error . ']');
 		}
-		$this->totalInQueue = $queueresult->num_rows;
+		$queue1 = $queueresult->num_rows;
+		//run again for any in the submissions table
+		$queuesql2="SELECT * FROM `submissions`";
+		if(!$queueresult2 = $this->db->query($queuesql2)){
+			die('There was an error running the query [' . $this->db->error . ']');
+		}
+		$queue2 = $queueresult2->num_rows;
+		$this->totalInQueue = $queue1 + $queue2;
 	}
 	public function getStats($type)
 	{
