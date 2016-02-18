@@ -4,14 +4,15 @@ $item_per_page = 10;
 //the host of your database server (usually localhost)
 $db_host = "localhost";
 //the username allowed to access this server and database
-$db_user = "tainted2_vforums";
+$db_user = "";
 //the password for said user
-$db_pass = "9Bl8BX1emk017JH";
+$db_pass = "";
 //the name of the database itself
-$db_name = "tainted2_scamdb";
+$db_name = "";
 
-//the name of your Xenforo Database
-$xen_db = "tainted2_vforums";
+//the name of your Xenforo Database (if used)
+$xf_randomthread_enabled = false; //set to true if used
+$xen_db = "";
 
 //try to connect to the database
 $con = mysqli_connect($db_host,$db_user,$db_pass,$db_name);
