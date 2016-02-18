@@ -36,14 +36,17 @@ switch ($_GET['q'])
 		$cls_trustedsellers->getList();
 		break;
 	case "5":
-		//Warning: mysqli::query():
-		$randomPost = $cls_randomthread->getRandomPost();
-		if (strpos($randomPost,'http://vindictusforums.com//threads/.0/') !== false)
+		if ($xf_randomthread_enabled)
 		{
-			
-		}
-		else {
-			echo "Suggested Vindictus Forums Post: ".$randomPost;
+			//Warning: mysqli::query():
+			$randomPost = $cls_randomthread->getRandomPost();
+			if (strpos($randomPost,'http://vindictusforums.com//threads/.0/') !== false)
+			{
+				
+			}
+			else {
+				echo "Suggested Vindictus Forums Post: ".$randomPost;
+			}
 		}
 		break;
 	default:
