@@ -31,7 +31,7 @@ mysqli_select_db($con,$db_name);
 
 
 //try to connect to the xenforo database if the XenForo table var ($xen_db) is not empty
-if ($xen_db !== "")
+if ($xf_randomthread_enabled)
 {
 	$con2 = mysqli_connect($db_host,$db_user,$db_pass,$xen_db);
 	//if it failed, let the user know and kill the script. otherwise continue.
