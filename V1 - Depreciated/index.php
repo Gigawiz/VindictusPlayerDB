@@ -28,6 +28,7 @@ function submitScammer(ign, alts, scmtyp, amtlst, server, sslink, charnm, notes,
 	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/templatemo_style.css">
+	<link rel="stylesheet" href="css/datatables.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script> 
 	<script type="text/javascript" src="js/bootstrap.min.js"></script> 
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>
@@ -55,16 +56,6 @@ function submitScammer(ign, alts, scmtyp, amtlst, server, sslink, charnm, notes,
 		</script>
 </head>
 <body>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-65133317-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 	<header class="site-header container animated fadeInDown">
 		<div class="header-wrapper">
 			<div class="row">
@@ -202,6 +193,7 @@ function submitScammer(ign, alts, scmtyp, amtlst, server, sslink, charnm, notes,
 											<th>Amount Scammed</th>
 											<th>Violation</th>
 											<th>Server</th>
+											<th>Reporting Group</th>
 											<th>Status</th>
 											<th>Screenshots</th>
 											<th>Notes</th>
@@ -240,6 +232,7 @@ function submitScammer(ign, alts, scmtyp, amtlst, server, sslink, charnm, notes,
 								  <option value="Scamming">Scammed NX, Gold or in-game item(s)</option>
 								  <option value="Hacking">Hacked Account</option>
 								  <option value="Mailbox Trolling">Mailbox Trolling</option>
+								  <option value="Player Harassment">Player Harassment</option>
 								  <option value="Trusted Player">Trusted Player</option>
 							  </select><br /><br />
 							  <label for="amtlst">Amount Lost: </label><br />
@@ -281,16 +274,6 @@ function submitScammer(ign, alts, scmtyp, amtlst, server, sslink, charnm, notes,
 						<li><a href="http://vindictusforums.com" target="_blank">Vindictus Forums</a></li>
 					</ul>
 					<br>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- vsdb_footer_responsive -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2670149076203231"
-     data-ad-slot="6378730551"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 				</div>
 			</div>
 		</div>

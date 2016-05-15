@@ -13,13 +13,13 @@
 //the host of your database server (usually localhost)
 $db_host = "localhost";
 //the username allowed to access this server and database
-$db_user = "";
+$db_user = "piratekings";
 //the password for said user
-$db_pass = "";
+$db_pass = "9Bl8BX1emk017JH";
 //the name of the database itself
-$db_name = "";
+$db_name = "piratekings";
 //the full url to your website (no trailing slash)
-$siteurl = "";
+$siteurl = "http://vindictusforums.com";
 
 /*******************************************************
 *					Main Script                        *

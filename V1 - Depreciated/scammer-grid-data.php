@@ -16,20 +16,22 @@ $columns = array(
 	3 => 'amt_scmd',
 	4 => 'violation',
 	5 => 'server',
-	6 => 'status',
-	7 => 'screenshots',
-	8 => 'notes',
+	6 => 'report_display_group',
+	7 => 'status',
+	8 => 'screenshots',
+	9 => 'notes',
+	10 => 'view'
 );
 
 // getting total number records without any search
-$sql = "SELECT id, ign, alt_chrs, amt_scmd, violation, server, status, screenshots, notes";
+$sql = "SELECT id, ign, alt_chrs, amt_scmd, violation, server, report_display_group, status, screenshots, notes";
 $sql.=" FROM scammers";
 $query=mysqli_query($conn, $sql) or die("scammer-grid-data.php: get scammers");
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
 
-$sql = "SELECT id, ign, alt_chrs, amt_scmd, violation, server, status, screenshots, notes";
+$sql = "SELECT id, ign, alt_chrs, amt_scmd, violation, server, report_display_group, status, screenshots, notes";
 $sql.=" FROM scammers WHERE 1=1";
 if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
 	$sql.=" AND ( ign LIKE '".$requestData['search']['value']."%' ";    
@@ -41,8 +43,7 @@ if( !empty($requestData['search']['value']) ) {   // if there is a search parame
 }
 $query=mysqli_query($conn, $sql) or die("scammer-grid-data.php: get scammers");
 $totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result. 
-$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start']." ,".$requestData['length']."   ";
-/* $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc  */	
+$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start']." ,".$requestData['length']."   ";	
 $query=mysqli_query($conn, $sql) or die("scammer-grid-data.php: get scammers");
 
 $data = array();
@@ -55,6 +56,7 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
 	$nestedData[] = $row["amt_scmd"];
 	$nestedData[] = $row["violation"];
 	$nestedData[] = $row["server"];
+	$nestedData[] = $row["report_display_group"];
 	$nestedData[] = $row["status"];
 	if (!empty($row['screenshots']))
 	{
@@ -81,6 +83,7 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
 	else {
 		$nestedData[] = $row["notes"];
 	}
+	$nestedData[] = '<a class="show-10 userinfo btn btn-default" href="#">Testing</a>';
 	$data[] = $nestedData;
 }
 
