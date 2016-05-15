@@ -3,20 +3,26 @@ VindictusScamDB is the first database of known scammers on the game vindictus. T
 
 The code posted here is live on our site and released so others can see some of the work put into VindictusScamDB. Feel free to submit issues or suggestions and I will attempt to fix/implement them.
 
-New in V1.7.3:
+New in V2.0 RC1:
 
-Replaced old scammer table logic with Datatables
+Changed theme, now uses "Landed" by "HTML5Up" (http://html5up.net/landed)
 
-Added logic to support multiple comma seperated screenshot links (uses individual featherlight buttons for each screenshot link, will be replaced with gallery soon)
+Removed Class System (not used anymore)
 
-Fixed bug in "system.class.php" that would cause "under investigation" statstics to return 0 if "submissions" table was empty
+Removed "API.php" (which handled everything system wide)
 
-Added option to disable xenforo random thread link
+Added "submit.php" for submitting new scammers via ajax.
 
-Removed Trusted Players section (will be re-added with V2)
+Removed "xenforo random posts"
 
-Replaced "About Us" with "FAQ" that includes an average NX Pricing table
+Added function and table to house adsense ads
 
-Added note to index about future Nexon TOS changes
+Changed config, now Database details, Site information, Menu Options, Google info (anaylitics code, reCaptcha keys), and FAQ are stored in Arrays.
 
-Removed link to Beta v2.0, No longer public until release.
+Fixed typo in answer to FAQ "What happens if a player I am doing business with is not in the database?"
+
+Added "featherlight Gallery" to table if there are multiple screenshots in the database entry
+
+Added sorting labels to DataTables table
+
+Shoutout to MistyBerry from the VindiDiscord chat for helping resolve a bug with the submit form!
