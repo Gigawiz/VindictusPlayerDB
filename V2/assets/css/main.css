@@ -17,7 +17,15 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
+/*profile page */
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
 
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
+/* end profile page*/ 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
@@ -3285,7 +3293,7 @@
 			#header nav ul {
 				margin: 0;
 			}
-
+			
 				#header nav ul li {
 					display: inline-block;
 					margin-left: 1em;
@@ -3298,6 +3306,7 @@
 						height: inherit;
 						line-height: inherit;
 						outline: 0;
+						font-weight: initial;
 					}
 
 						#header nav ul li a.button, #header nav ul li span.button {

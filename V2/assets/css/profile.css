@@ -1,0 +1,45 @@
+.profile-container {
+  width: 400px;
+  margin: 120px auto 120px;
+  text-align: center;
+}
+
+/*
+  background-color: #fff;
+  padding: 0 20px 20px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+*/
+
+.notes-text {
+	background-color: #2D2F3E;
+	padding: 20px;
+	color: white !important;
+}
+
+.profile-container h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.profile-container h4 {
+  font-size: 13px;
+  color: #00baff;
+  letter-spacing: 1px;
+  margin-bottom: 25px
+}
+.profile-container p {
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.screenshot{
+	max-width: 300px;
+	height: auto;
+}

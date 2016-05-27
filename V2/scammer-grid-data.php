@@ -12,14 +12,15 @@ $columns = array(
 // datatable column index  => database column name
 	0 => 'id',
 	1 => 'ign', 
-	2 => 'alt_chrs',
-	3 => 'amt_scmd',
-	4 => 'violation',
-	5 => 'server',
-	6 => 'report_display_group',
-	7 => 'status',
-	8 => 'screenshots',
-	9 => 'notes'
+	2 => 'violation',
+	3 => 'server',
+	4 => 'status',
+	5 => 'profile'
+	/*2 => 'amt_scmd',
+	7 => 'alt_chrs',
+	8 => 'report_display_group',
+	9 => 'screenshots',
+	10 => 'notes'*/
 );
 
 // getting total number records without any search
@@ -51,45 +52,10 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
 
 	$nestedData[] = $row["id"];
 	$nestedData[] = $row["ign"];
-	$nestedData[] = $row["alt_chrs"];
-	/*if (strlen($row["amt_scmd"]>20))
-	{
-		$nestedData[] = '<a class="button special" href="#" data-featherlight="<p style=\'color:black;\'>'.$row["amt_scmd"].'</p>" style="color:black;">View Amount Lost</a>';
-	}
-	else {*/
-		$nestedData[] = $row["amt_scmd"];
-	//}
 	$nestedData[] = $row["violation"];
 	$nestedData[] = $row["server"];
-	$nestedData[] = $row["report_display_group"];
 	$nestedData[] = $row["status"];
-	if (!empty($row['screenshots']))
-	{
-		if (strpos($row['screenshots'], ',') !== false) {
-			 $screenGallery = explode(',', $row['screenshots']);
-			 $ss = '<section data-featherlight-gallery data-featherlight-filter=\'a\'>';
-			 foreach ($screenGallery as $screenshot)
-			 {
-				$ss .= '<a href=\''.$screenshot.'\'><img src=\''.$screenshot.'\' class=\'galleryimg\'></a>';
-			 }
-			 $ss .= '</section>';
-			 $gallery = '<a class="button special" href="#" data-featherlight="'.$ss.'">View Gallery</a>';
-			 $nestedData[] = $gallery;
-		}
-		else {
-			$nestedData[] = '<a class="button special" href="'.$row['screenshots'].'" data-featherlight="image">View Screenshot</a>';
-		}
-	}
-	else {
-		$nestedData[] = $row['screenshots'];
-	}
-	if (!empty($row['notes']))
-	{
-		$nestedData[] = '<a class="button special" href="#" data-featherlight="<p style=\'color:black;\'>'.$row['notes'].'</p>" style="color:black;">View Notes</a>';
-	}
-	else {
-		$nestedData[] = $row["notes"];
-	}
+	$nestedData[] = generateProfile($row["ign"], $row['screenshots'], $row['notes'], $row["report_display_group"], $row["alt_chrs"], $row["status"], $row["amt_scmd"]);
 	$data[] = $nestedData;
 }
 

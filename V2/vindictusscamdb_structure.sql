@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 15, 2016 at 03:23 AM
+-- Generation Time: May 27, 2016 at 02:22 PM
 -- Server version: 5.5.49-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
@@ -29,22 +29,65 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `adsense_ad_locations` (
   `id` int(11) NOT NULL,
   `location` text NOT NULL,
-  `code` text NOT NULL
+  `code` text NOT NULL,
+  `enabled` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ip2country`
+-- Table structure for table `changelog`
 --
 
-CREATE TABLE IF NOT EXISTS `ip2country` (
+CREATE TABLE IF NOT EXISTS `changelog` (
   `id` int(11) NOT NULL,
-  `min` bigint(12) NOT NULL,
-  `max` bigint(12) NOT NULL,
-  `code` varchar(2) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `revision` text NOT NULL,
+  `entry` text NOT NULL,
+  `username` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emails`
+--
+
+CREATE TABLE IF NOT EXISTS `emails` (
+  `id` int(11) NOT NULL,
+  `subject` text NOT NULL,
+  `body` text NOT NULL,
+  `email_address` text NOT NULL,
+  `sent_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faq`
+--
+
+CREATE TABLE IF NOT EXISTS `faq` (
+  `id` int(11) NOT NULL,
+  `question` text NOT NULL,
+  `answer` text NOT NULL,
+  `styling` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_entries`
+--
+
+CREATE TABLE IF NOT EXISTS `menu_entries` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `link` text NOT NULL,
+  `styling` text NOT NULL,
+  `changefreq` text NOT NULL,
+  `priority` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -68,31 +111,46 @@ CREATE TABLE IF NOT EXISTS `scammers` (
   `ip_address` text NOT NULL,
   `phys_address` text NOT NULL,
   `submission_ip` text NOT NULL,
-  `report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `submitter_email` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `scammers_beta`
+-- Table structure for table `scammer_activity`
 --
 
-CREATE TABLE IF NOT EXISTS `scammers_beta` (
+CREATE TABLE IF NOT EXISTS `scammer_activity` (
   `id` int(11) NOT NULL,
-  `ign` text NOT NULL,
-  `amt_scmd` text NOT NULL,
-  `alt_chrs` text NOT NULL,
-  `violation` text NOT NULL,
-  `screenshots` text NOT NULL,
-  `server` text NOT NULL,
-  `status` text NOT NULL,
-  `reported_by` text NOT NULL,
-  `notes` text NOT NULL,
-  `skype` text NOT NULL,
-  `ip_address` text NOT NULL,
-  `phys_address` text NOT NULL,
-  `submission_ip` text NOT NULL,
-  `report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `scammer` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `details` text NOT NULL,
+  `submitted_by` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `url` text NOT NULL,
+  `keywords` text NOT NULL,
+  `description` text NOT NULL,
+  `author` text NOT NULL,
+  `version` text NOT NULL,
+  `vers_major` int(11) NOT NULL,
+  `vers_minor` int(11) NOT NULL,
+  `beta` int(11) NOT NULL,
+  `captcha_key` text NOT NULL,
+  `captcha_secret` text NOT NULL,
+  `captcha_enabled` tinyint(1) NOT NULL,
+  `analytics_code` text NOT NULL,
+  `ad_spots_enabled` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -117,31 +175,21 @@ CREATE TABLE IF NOT EXISTS `submissions` (
   `ip_address` text NOT NULL,
   `phys_address` text NOT NULL,
   `submission_ip` text NOT NULL,
-  `report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `submitter_email` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `submissions_backup`
+-- Table structure for table `traffic`
 --
 
-CREATE TABLE IF NOT EXISTS `submissions_backup` (
+CREATE TABLE IF NOT EXISTS `traffic` (
   `id` int(11) NOT NULL,
-  `ign` text NOT NULL,
-  `amt_scmd` text NOT NULL,
-  `alt_chrs` text NOT NULL,
-  `violation` text NOT NULL,
-  `screenshots` text NOT NULL,
-  `server` text NOT NULL,
-  `status` text NOT NULL,
-  `reported_by` text NOT NULL,
-  `notes` text NOT NULL,
-  `skype` text NOT NULL,
-  `ip_address` text NOT NULL,
-  `phys_address` text NOT NULL,
-  `submission_ip` text NOT NULL,
-  `report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `ip` text NOT NULL,
+  `total_visits` int(11) NOT NULL,
+  `visit_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -207,11 +255,30 @@ ALTER TABLE `adsense_ad_locations`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `ip2country`
+-- Indexes for table `changelog`
 --
-ALTER TABLE `ip2country`
+ALTER TABLE `changelog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `emails`
+--
+ALTER TABLE `emails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu_entries`
+--
+ALTER TABLE `menu_entries`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `min` (`min`);
+  ADD UNIQUE KEY `id_2` (`id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `scammers`
@@ -220,10 +287,17 @@ ALTER TABLE `scammers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `scammers_beta`
+-- Indexes for table `scammer_activity`
 --
-ALTER TABLE `scammers_beta`
+ALTER TABLE `scammer_activity`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `submissions`
@@ -232,10 +306,11 @@ ALTER TABLE `submissions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `submissions_backup`
+-- Indexes for table `traffic`
 --
-ALTER TABLE `submissions_backup`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `traffic`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `users`
@@ -265,9 +340,24 @@ ALTER TABLE `verified_sellers`
 ALTER TABLE `adsense_ad_locations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `ip2country`
+-- AUTO_INCREMENT for table `changelog`
 --
-ALTER TABLE `ip2country`
+ALTER TABLE `changelog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `faq`
+--
+ALTER TABLE `faq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `menu_entries`
+--
+ALTER TABLE `menu_entries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `scammers`
@@ -275,9 +365,14 @@ ALTER TABLE `ip2country`
 ALTER TABLE `scammers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `scammers_beta`
+-- AUTO_INCREMENT for table `scammer_activity`
 --
-ALTER TABLE `scammers_beta`
+ALTER TABLE `scammer_activity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `submissions`
@@ -285,9 +380,9 @@ ALTER TABLE `scammers_beta`
 ALTER TABLE `submissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `submissions_backup`
+-- AUTO_INCREMENT for table `traffic`
 --
-ALTER TABLE `submissions_backup`
+ALTER TABLE `traffic`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
