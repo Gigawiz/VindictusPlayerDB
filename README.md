@@ -8,6 +8,7 @@ Please note, there are now 2 databases included.
 
 "vindictusscamdb_structure" contains only the structure and should be the table you use to run the script. Please note that some of the table structure has changed and may overwrite your current data.
 
+Also note that you will need php pear mail and net_smtp modules installed as the email system for the submit form requires those modules or the script errors out.
 
 New in V2.1 RC1 (Alot has been changed, and yes this is all the same release.):
 
